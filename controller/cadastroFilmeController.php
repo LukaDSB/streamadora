@@ -1,5 +1,5 @@
 <?php
-include_once '../modal/filmesModal.php';
+include_once '../modal/filmesModel.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $titulo = $_POST['titulo'];
@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $caminhoImagem = $diretorio . $nomeImagem;
 
         if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoImagem)) {
-            $filmesModal = new FilmesModal();
+            $filmesModel = new FilmesModel();
 
-            $result = $filmesModal->cadastrarFilmes($titulo, $descricao, $anoLancamento, $duracaoLocacao, $duracaoFilme, $idioma, $precoLocacao, $classificacao, $idiomaId, $nomeImagem);
+            $result = $filmesModel->cadastrarFilmes($titulo, $descricao, $anoLancamento, $duracaoLocacao, $duracaoFilme, $idioma, $precoLocacao, $classificacao, $idiomaId, $nomeImagem);
 
             if ($result) {
                 header('Location: ../index.php');
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "Erro ao cadastrar filme.";
             }
 
-            $filmesModal->closeConnection();
+            $filmesModel->closeConnection();
         } else {
             echo "Erro ao mover o arquivo da imagem.";
         }

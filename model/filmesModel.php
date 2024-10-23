@@ -1,5 +1,5 @@
 <?php
-class FilmesModal {
+class FilmesModel {
     private $servername = "localhost";
     private $username = "root";
     private $password = "root";

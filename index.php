@@ -1,7 +1,7 @@
 <?php
-include_once 'modal/filmesModal.php';
+include_once 'model/filmesModel.php';
 
-$db = new FilmesModal();
+$db = new FilmesModel();
 $filmes = $db->getFilmes();
 $db->closeConnection();
 ?>

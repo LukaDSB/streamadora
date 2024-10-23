@@ -1,10 +1,10 @@
 <?php
-include_once '../modal/filmesModal.php';
+include_once '../modal/filmesModel.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $filmesModal = new FilmesModal();
-    $result = $filmesModal->excluirFilme($id);
+    $filmesModel = new FilmesModel();
+    $result = $filmesModel->excluirFilme($id);
 
     if ($result) {
         header("Location: /index.php");
