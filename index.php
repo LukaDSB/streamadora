@@ -102,7 +102,7 @@ $db->closeConnection();
                                             <label for="imagem">Imagem do Filme:</label>
                                             <input type="file" id="imagem" name="imagem" accept="image/*" required>
                                         </div>
-                                        <input type="submit" value="Cadastrar Filmes">
+                                        <input type="submit" value="Cadastrar Filme">
                                     </form>
                                 </div>
                             </div>
@@ -155,89 +155,125 @@ $db->closeConnection();
             </h4>
         </section>
         <section id="main-receitas">
-    <?php
-    if ($filmes->num_rows > 0) {
-        while ($row = $filmes->fetch_assoc()) {
-            echo "<div class='card'>
+            <?php
+            if ($filmes->num_rows > 0) {
+                while ($row = $filmes->fetch_assoc()) {
+                    echo "<div class='card'>
                     <img src='src/imagens/" . $row["imagem"] . "' class='card-img-top' alt='" . $row["titulo"] . "'>
                     <div class='card-body'>
                         <h5 class='card-title'>" . $row["titulo"] . "</h5>
                         <p class='card-text'>" . $row["descricao"] . "</p>
-                        <button type='button' class='btn btn-primary me-3' data-bs-toggle='modal' data-bs-target='#modalAtualizacao'>
-                        Editar
+                        <button type='button' class='btn btn-primary me-3' 
+                            data-bs-toggle='modal' 
+                            data-bs-target='#modalAtualizacao' 
+                            data-filmes_id='" . $row['filmes_id'] . "; ?>' 
+                            data-titulo='" . $row['titulo'] . "' 
+                            data-descricao='" . $row['descricao'] . "' 
+                            data-anoLancamento='" . $row['anoLancamento'] . "' 
+                            data-duracaoLocacao='" . $row['duracaoLocacao'] . "' 
+                            data-duracaoFilme='" . $row['duracaoFilme'] . "' 
+                            data-idioma='" . $row['idioma'] . "' 
+                            data-precoLocacao='" . $row['precoLocacao'] . "' 
+                            data-classificacao='" . $row['classificacao'] . "'>
+                            Editar
                         </button>
+
                         <a href='controller/excluirFilmeController.php?id=" . $row["filmes_id"] . "' class='btn btn-danger' onclick='return confirm(\"Tem certeza que deseja excluir este item?\");'>Excluir</a>
                     </div>
                 </div>";
-        }
-    } else {
-        echo "<p>Nenhum Filme encontrado</p>";
-    }
-    ?>
-    <div class="modal fade" id="modalAtualizacao" tabindex="-1" aria-labelledby="modalAtualizacaoLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="modalCadastroLabel">Cadastrar novo filme</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                }
+            } else {
+                echo "<p>Nenhum Filme encontrado</p>";
+            }
+            ?>
+            <div class="modal fade" id="modalAtualizacao" tabindex="-1" aria-labelledby="modalAtualizacaoLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalCadastroLabel">Cadastrar novo filme</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="controller/atualizarFilmeController.php" method="post" enctype="multipart/form-data">
+                                <input type="hidden" id="filmes_id" name="filmes_id">
+
+                                <div class="mb-3">
+                                    <label for="titulo" class="col-form-label" style="color: black">Titulo:</label>
+                                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="">
                                 </div>
-                                <div class="modal-body">
-                                    <form action="controller/cadastroFilmeController.php" method="post" enctype="multipart/form-data">
-                                        <div class="mb-3">
-                                            <label for="titulo" class="col-form-label" style="color: black">Titulo:</label>
-                                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="descricao" class="col-form-label"
-                                                style="color: black">Descricao:</label>
-                                            <textarea class="form-control" id="descricao" name="descricao"></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="anoLancamento" class="col-form-label" style="color: black">Ano de lançamento:</label>
-                                            <input type="text" class="form-control" id="anoLancamento" name="anoLancamento">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="duracaoLocacao" class="col-form-label" style="color: black">Duração de locação:</label>
-                                            <input type="text" class="form-control" id="duracaoLocacao" name="duracaoLocacao">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="duracaoFilme" class="col-form-label" style="color: black">Duração de filmes:</label>
-                                            <input type="text" class="form-control" id="duracaoFilme" name="duracaoFilme">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="idioma" class="col-form-label" style="color: black">Idioma:</label>
-                                            <input type="text" class="form-control" id="idioma" name="idioma">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="precoLocacao" class="col-form-label" style="color: black">Preço de locação:</label>
-                                            <input type="text" class="form-control" id="precoLocacao" name="precoLocacao">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="classificacao" class="col-form-label" style="color: black">Classificação:</label>
-                                            <input type="text" class="form-control" id="classificacao" name="classificacao">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="imagem">Imagem do Filme:</label>
-                                            <input type="file" id="imagem" name="imagem" accept="image/*" required>
-                                        </div>
-                                        <input type="submit" value="Cadastrar Filmes">
-                                    </form>
+                                <div class="mb-3">
+                                    <label for="descricao" class="col-form-label"
+                                        style="color: black">Descricao:</label>
+                                    <textarea class="form-control" id="descricao" name="descricao"></textarea>
                                 </div>
-                            </div>
+                                <div class="mb-3">
+                                    <label for="anoLancamento" class="col-form-label" style="color: black">Ano de lançamento:</label>
+                                    <input type="text" class="form-control" id="anoLancamento" name="anoLancamento">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="duracaoLocacao" class="col-form-label" style="color: black">Duração de locação:</label>
+                                    <input type="text" class="form-control" id="duracaoLocacao" name="duracaoLocacao">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="duracaoFilme" class="col-form-label" style="color: black">Duração de filmes:</label>
+                                    <input type="text" class="form-control" id="duracaoFilme" name="duracaoFilme">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="idioma" class="col-form-label" style="color: black">Idioma:</label>
+                                    <input type="text" class="form-control" id="idioma" name="idioma">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precoLocacao" class="col-form-label" style="color: black">Preço de locação:</label>
+                                    <input type="text" class="form-control" id="precoLocacao" name="precoLocacao">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="classificacao" class="col-form-label" style="color: black">Classificação:</label>
+                                    <input type="text" class="form-control" id="classificacao" name="classificacao">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagem">Imagem do Filme:</label>
+                                    <input type="file" id="imagem" name="imagem" accept="image/*">
+                                </div>
+                                <input type="submit" value="Atualizar Filme">
+                            </form>
                         </div>
                     </div>
+                </div>
+            </div>
         </section>
-
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    </script>
+    <script>
+        const modalAtualizacao = document.getElementById('modalAtualizacao');
+        modalAtualizacao.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget;
+
+            const id = button.getAttribute('data-filmes_id');
+            const titulo = button.getAttribute('data-titulo');
+            const descricao = button.getAttribute('data-descricao');
+            const anoLancamento = button.getAttribute('data-anoLancamento');
+            const duracaoLocacao = button.getAttribute('data-duracaoLocacao');
+            const duracaoFilme = button.getAttribute('data-duracaoFilme');
+            const idioma = button.getAttribute('data-idioma');
+            const precoLocacao = button.getAttribute('data-precoLocacao');
+            const classificacao = button.getAttribute('data-classificacao');
+
+            modalAtualizacao.querySelector('#filmes_id').value = id;
+            modalAtualizacao.querySelector('#titulo').value = titulo;
+            modalAtualizacao.querySelector('#descricao').value = descricao;
+            modalAtualizacao.querySelector('#anoLancamento').value = anoLancamento;
+            modalAtualizacao.querySelector('#duracaoLocacao').value = duracaoLocacao;
+            modalAtualizacao.querySelector('#duracaoFilme').value = duracaoFilme;
+            modalAtualizacao.querySelector('#idioma').value = idioma;
+            modalAtualizacao.querySelector('#precoLocacao').value = precoLocacao;
+            modalAtualizacao.querySelector('#classificacao').value = classificacao;
+        });
+    </script>
+
 </body>
-
-
-
 </html>
-

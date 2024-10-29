@@ -1,7 +1,7 @@
 <?php 
 include_once '../model/filmesModel.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['filmes_id'])) {
+if (isset($_POST['filmes_id'])) {
     $filmesModel = new FilmesModel();
     
     $id = $_POST['filmes_id'];
