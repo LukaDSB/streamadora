@@ -17,6 +17,10 @@
     font-size: 3.5em;
     color: white;
     margin-bottom: 2em;
+    
+    span{
+        color: red;
+    }
 }
 
 h2, h4{

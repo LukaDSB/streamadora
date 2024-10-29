@@ -1,5 +1,5 @@
 <?php
-include_once '../modal/filmesModel.php';
+include_once '../model/filmesModel.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
