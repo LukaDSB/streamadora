@@ -59,7 +59,7 @@ $db->closeConnection();
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="modalCadastroLabel">Cadastrar novo café</h1>
+                                    <h1 class="modal-title fs-5" id="modalCadastroLabel">Cadastrar novo filme</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -99,10 +99,10 @@ $db->closeConnection();
                                             <input type="text" class="form-control" id="classificacao" name="classificacao">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="imagem">Imagem do Café:</label>
+                                            <label for="imagem">Imagem do Filme:</label>
                                             <input type="file" id="imagem" name="imagem" accept="image/*" required>
                                         </div>
-                                        <input type="submit" value="Cadastrar Café">
+                                        <input type="submit" value="Cadastrar Filmes">
                                     </form>
                                 </div>
                             </div>
@@ -125,15 +125,15 @@ $db->closeConnection();
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="src/imagens/carr1.jpg" class="d-block w-100 carousel-item-img"
-                            alt="Aprenda mais sobre os tipos de café!">
+                            alt="Aprenda mais sobre os tipos de filme!">
                         <div class="carousel-caption d-none d-md-block">
-                            <h2 class="poetsen-one-regular">Streamadora<br>agora com iMax</h2>
+                            <h2 class="poetsen-one-regular"><span>Streamadora</span><br>agora com iMax</h2>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="src/imagens/carr2.jpg" class="d-block w-100 carousel-item-img">
                         <div class="carousel-caption d-none d-md-block fill-white">
-                            <h2 class="poetsen-one-regular">As sessões mais modernas!</h2>
+                            <h2 class="poetsen-one-regular">As sessões mais modernas do Brasil!</h2>
                         </div>
                     </div>
                 </div>
@@ -155,28 +155,89 @@ $db->closeConnection();
             </h4>
         </section>
         <section id="main-receitas">
-            <?php
-            if ($filmes->num_rows > 0) {
-                while ($row = $filmes->fetch_assoc()) {
-                    echo "<div class='card'>
-                            <img src='src/imagens/" . $row["imagem"] . "' class='card-img-top' alt=' " . $row["titulo"] . " '>
-                            <div class='card-body'>
-                                <h5 class='card-title'>" . $row["titulo"] . "</h5>
-                                <p class='card-text'>" . $row["descricao"] . "</p>
-                                <!--<a href='#' class='btn btn-secondary'>Ver receita</a>-->
-                                <a href='controller/excluirFilmeController.php?id=" . $row["filmes_id"] . "' class='btn btn-danger' onclick='return confirm(\"Tem certeza que deseja excluir este item?\");'>Excluir</a>
+    <?php
+    if ($filmes->num_rows > 0) {
+        while ($row = $filmes->fetch_assoc()) {
+            echo "<div class='card'>
+                    <img src='src/imagens/" . $row["imagem"] . "' class='card-img-top' alt='" . $row["titulo"] . "'>
+                    <div class='card-body'>
+                        <h5 class='card-title'>" . $row["titulo"] . "</h5>
+                        <p class='card-text'>" . $row["descricao"] . "</p>
+                        <button type='button' class='btn btn-primary me-3' data-bs-toggle='modal' data-bs-target='#modalAtualizacao'>
+                        Editar
+                        </button>
+                        <a href='controller/excluirFilmeController.php?id=" . $row["filmes_id"] . "' class='btn btn-danger' onclick='return confirm(\"Tem certeza que deseja excluir este item?\");'>Excluir</a>
+                    </div>
+                </div>";
+        }
+    } else {
+        echo "<p>Nenhum Filme encontrado</p>";
+    }
+    ?>
+    <div class="modal fade" id="modalAtualizacao" tabindex="-1" aria-labelledby="modalAtualizacaoLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="modalCadastroLabel">Cadastrar novo filme</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="controller/cadastroFilmeController.php" method="post" enctype="multipart/form-data">
+                                        <div class="mb-3">
+                                            <label for="titulo" class="col-form-label" style="color: black">Titulo:</label>
+                                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="descricao" class="col-form-label"
+                                                style="color: black">Descricao:</label>
+                                            <textarea class="form-control" id="descricao" name="descricao"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="anoLancamento" class="col-form-label" style="color: black">Ano de lançamento:</label>
+                                            <input type="text" class="form-control" id="anoLancamento" name="anoLancamento">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="duracaoLocacao" class="col-form-label" style="color: black">Duração de locação:</label>
+                                            <input type="text" class="form-control" id="duracaoLocacao" name="duracaoLocacao">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="duracaoFilme" class="col-form-label" style="color: black">Duração de filmes:</label>
+                                            <input type="text" class="form-control" id="duracaoFilme" name="duracaoFilme">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="idioma" class="col-form-label" style="color: black">Idioma:</label>
+                                            <input type="text" class="form-control" id="idioma" name="idioma">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="precoLocacao" class="col-form-label" style="color: black">Preço de locação:</label>
+                                            <input type="text" class="form-control" id="precoLocacao" name="precoLocacao">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="classificacao" class="col-form-label" style="color: black">Classificação:</label>
+                                            <input type="text" class="form-control" id="classificacao" name="classificacao">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="imagem">Imagem do Filme:</label>
+                                            <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                                        </div>
+                                        <input type="submit" value="Cadastrar Filmes">
+                                    </form>
+                                </div>
                             </div>
-                        </div>";
-                }
-            } else {
-                echo "<p>Nenhum café encontrado</p>";
-            }
-            ?>
+                        </div>
+                    </div>
         </section>
+
+
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
 </body>
 
+
+
 </html>
+
