@@ -1,10 +1,10 @@
 <?php
-include_once '../model/filmesModel.php';
+include_once '../model/idiomaModel.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $filmesModel = new FilmesModel();
-    $result = $filmesModel->excluirFilme($id);
+    $idiomaModel = new IdiomaModel();
+    $result = $idiomaModel->excluirIdioma($id);
 
     if ($result) {
         header("Location: /index.php");
