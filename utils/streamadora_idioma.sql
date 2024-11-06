@@ -49,3 +49,8 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2024-10-23 13:59:03
+
+INSERT INTO `streamadora`.`idioma` (`idioma_id`, `nome`) VALUES ('3', 'alemao');
+INSERT INTO `streamadora`.`idioma` (`idioma_id`, `nome`) VALUES ('4', 'espanhol');
+INSERT INTO `streamadora`.`idioma` (`idioma_id`, `nome`) VALUES ('5', 'dinamarques');
+INSERT INTO `streamadora`.`idioma` (`idioma_id`, `nome`) VALUES ('6', 'chines')
