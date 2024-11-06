@@ -1,5 +1,5 @@
 <?php
-class FilmesModel {
+class AtoresModel {
     public $servername = "localhost";
     private $username = "root";
     private $password = "root";
@@ -15,14 +15,14 @@ class FilmesModel {
         }
     }
 
-    public function getFilmes() {
-        $sql = "SELECT * FROM filmes";
+    public function getAtores() {
+        $sql = "SELECT * FROM ator";
         $result = $this->conn->query($sql);
         return $result;
     }
 
-    public function excluirFilme($id) {
-        $sql = "DELETE FROM filmes WHERE filmes_id = ?";
+    public function excluirAtores($id) {
+        $sql = "DELETE FROM ator WHERE filmes_id = ?";
         $stmt = $this->conn->prepare($sql);
     
         if ($stmt) {
@@ -35,11 +35,11 @@ class FilmesModel {
         }
     }
 
-    public function cadastrarFilmes($titulo, $descricao, $anoLancamento, $duracaoLocacao, $duracaoFilme, $idioma, $precoLocacao, $classificacao, $idiomaId, $nomeImagem) {
-        $sql = "INSERT INTO filmes (titulo, descricao, anoLancamento, duracaoLocacao, duracaoFilme, idioma, precoLocacao, classificacao, idioma_id, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public function cadastrarAtores($nome) {
+        $sql = "INSERT INTO ator (nome) VALUES (?)";
     
         if ($stmt = $this->conn->prepare($sql)) {
-            $stmt->bind_param("ssiiisdsis", $titulo, $descricao, $anoLancamento, $duracaoLocacao, $duracaoFilme, $idioma, $precoLocacao, $classificacao, $idiomaId, $nomeImagem);
+            $stmt->bind_param("s", $nome);
             $executou = $stmt->execute();
             $stmt->close();
     

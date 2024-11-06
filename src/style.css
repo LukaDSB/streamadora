@@ -32,6 +32,13 @@ h2, h4{
     width: 18rem;
     margin: 2em;
 }
+/*Altera o formato do card apenas da pagina ator*/
+.card_ator{
+    width: 100%;
+    margin: .3em;
+    display: block;
+    flex-direction: column;
+}
 
 #main-receitas{
     display: flex;
@@ -69,4 +76,15 @@ body{
     h5{
         color: white;
     }
+}
+/*Altera para azul o link da pagina atual*/
+.atual_page {
+
+    color: #0D8AFF !important;
+}
+
+/*tentativa de alterar o formato e a posicao do botao editar*/
+.btn-edit-ator button  {
+    right: 90px;
+    color: black!important; 
 }
