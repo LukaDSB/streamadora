@@ -12,7 +12,7 @@ $db->closeConnection();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cafeicultura</title>
+    <title>Streamadora</title>
     <link rel="stylesheet" type="text/css" href="src/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -31,7 +31,7 @@ $db->closeConnection();
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.php">Início</a>
+                            <a class="nav-link atual_page" aria-current="page" href="./index.php">Início</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -41,11 +41,11 @@ $db->closeConnection();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Ator</a>
+                            <a class="nav-link" href="./ator.php">Ator</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="idioma.php">Idioma</a>
+                            <a class="nav-link" href="#">Idioma</a>
                         </li>
                     </ul>
 
