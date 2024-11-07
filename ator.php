@@ -121,24 +121,26 @@ $db->closeConnection();
             <h4>Confira nossas novas séries e filmes!
             </h4>
         </section>
-        <section id="main-receitas">
+        <section id="exibir-atores">
             <?php
             if ($atores->num_rows > 0) {
                 while ($row = $atores->fetch_assoc()) {
-                    echo "<div class='card_ator btn-edit-ator'>
-                    <div class='card-body'>
-                        <h5 class='card-title'>" . $row["nome"] . "</h5>
-                        <button type='button' class='btn btn-primary' 
+                    echo "<div class='card_ator>
+                    <div class='atores'>
+                        <h5 class='nome-ator'>" . $row["nome"] . "</h5>
+                        <button type='button' class='btn btn-primary btn-edit' 
                             data-bs-toggle='modal' 
                             data-bs-target='#modalAtualizacao' 
-                            data-filmes_id='" . $row['ator_id'] . "; ?>' 
-                            data-titulo='" . $row['nome'] . "' 
+                            data-ator_id='" . $row['ator_id'] . "; ?>' 
+                            data-nome='" . $row['nome'] . "' >
                             Editar
                         </button>
+                        
 
                         <a href='controller/excluirAtorController.php?id=" . $row["ator_id"] . "' class='btn btn-danger' onclick='return confirm(\"Tem certeza que deseja excluir este item?\");'>Excluir</a>
                     </div>
                 </div>";
+                echo "<br   >";
                 }
             } else {
                 echo "<p>Nenhum ator encontrado</p>";
@@ -154,7 +156,7 @@ $db->closeConnection();
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="controller/atualizarAtorController.php" method="post" enctype="multipart/form-data">
+                            <form action="./controller/atualizarAtorController.php" method="post" enctype="multipart/form-data">
                                 <input type="hidden" id="ator_id" name="ator_id">
 
                                 <div class="mb-3">
