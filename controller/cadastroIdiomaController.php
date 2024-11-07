@@ -1,7 +1,7 @@
 <?php
 include_once '../model/idiomaModel.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     $nome = $_POST['nome'];
     
                   
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
            
             if ($result) {
-                header('Location: ../index.php');
+                header('Location: ../idioma.php');
                 exit;
             } else {
                 echo "Erro ao cadastrar idioma.";
@@ -25,6 +25,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             echo "Nome do idioma não foi informado.";
         }
-    } else {
-        echo "Método de requisição inválido.";
-    }
+    

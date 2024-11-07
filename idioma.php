@@ -2,6 +2,7 @@
 include_once 'model/idiomaModel.php';
 
 
+
 $di = new idiomaModel();
 $idioma = $di->getIdioma();
 $di->closeConnection();
@@ -60,7 +61,7 @@ table, th, td {
 
                     <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal"
                         data-bs-target="#modalCadastro">
-                        Cadastrar novo filme
+                        Cadastrar novo idioma
                     </button>
 
                     <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="modalCadastroLabel"
@@ -68,50 +69,18 @@ table, th, td {
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="modalCadastroLabel">Cadastrar novo filme</h1>
+                                    <h1 class="modal-title fs-5" id="modalCadastroLabel">Cadastrar novo idioma</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="controller/cadastroFilmeController.php" method="post" enctype="multipart/form-data">
+                                    <form action="controller/cadastroIdiomaController.php" method="post" enctype="multipart/form-data">
                                         <div class="mb-3">
-                                            <label for="titulo" class="col-form-label" style="color: black">Titulo:</label>
-                                            <input type="text" class="form-control" id="titulo" name="titulo">
+                                            <label for="nome" class="col-form-label" style="color: black">Idioma:</label>
+                                            <input type="text" class="form-control" id="nome" name="nome">
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="descricao" class="col-form-label"
-                                                style="color: black">Descricao:</label>
-                                            <textarea class="form-control" id="descricao" name="descricao"></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="anoLancamento" class="col-form-label" style="color: black">Ano de lançamento:</label>
-                                            <input type="text" class="form-control" id="anoLancamento" name="anoLancamento">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="duracaoLocacao" class="col-form-label" style="color: black">Duração de locação:</label>
-                                            <input type="text" class="form-control" id="duracaoLocacao" name="duracaoLocacao">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="duracaoFilme" class="col-form-label" style="color: black">Duração de filmes:</label>
-                                            <input type="text" class="form-control" id="duracaoFilme" name="duracaoFilme">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="idioma" class="col-form-label" style="color: black">Idioma:</label>
-                                            <input type="text" class="form-control" id="idioma" name="idioma">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="precoLocacao" class="col-form-label" style="color: black">Preço de locação:</label>
-                                            <input type="text" class="form-control" id="precoLocacao" name="precoLocacao">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="classificacao" class="col-form-label" style="color: black">Classificação:</label>
-                                            <input type="text" class="form-control" id="classificacao" name="classificacao">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="imagem">Imagem do Filme:</label>
-                                            <input type="file" id="imagem" name="imagem" accept="image/*" required>
-                                        </div>
-                                        <input type="submit" value="Cadastrar Filme">
+                                        
+                                        <input type="submit" value="Cadastrar Idioma">
                                     </form>
                                 </div>
                             </div>
@@ -154,6 +123,24 @@ echo '
 ?>
  </tbody>
 </table>
- 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+
+<script>
+        const modalAtualizacao = document.getElementById('modalAtualizacao');
+        modalAtualizacao.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget;
+
+          
+            const nome = button.getAttribute('data-nome');
+
+       
+            modalAtualizacao.querySelector('#nome').value = nome;
+            
+        });
+    </script>
+
+
 </body>
 </html>
