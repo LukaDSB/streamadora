@@ -82,6 +82,19 @@ table, th, td {
                                         
                                         <input type="submit" value="Cadastrar Idioma">
                                     </form>
+                                    <div class="modal-body">
+                            <form action="controller/atualizarIdiomaController.php" method="post" enctype="multipart/form-data">
+                                <input type="hidden" id="nome" name="nome">
+                                                                                                                          
+                                <div class="mb-3">
+                                    <label for="idioma" class="col-form-label" style="color: black">Idioma:</label>
+                                    <input type="text" class="form-control" id="idioma" name="idioma">
+                                </div>
+                                                              
+                                
+                                <input type="submit" value="Atualizar Idioma">
+
+                                
                                 </div>
                             </div>
                         </div>
@@ -89,21 +102,33 @@ table, th, td {
                 </div>
             </div>
         </nav>
+        <?php
+            if ($idioma->num_rows > 0) {
+                while ($row = $idioma->fetch_assoc()) {
+                    echo "<div class='card'>
+                     <div class='card-body'>
+                        <p class='card-text'>" . $row["nome"] . "</p>
+                        <button type='button' class='btn btn-primary me-3' 
+                            data-bs-toggle='modal' 
+                            data-bs-target='#modalExcluir' 
+                            data-idioma='" . $row['nome'] . "' 
+                            Editar
+                        </button>
+
+                        <a href='controller/excluirIdiomaController.php?id=" . $row["idioma_id"] . "' class='btn btn-danger' onclick='return confirm(\"Tem certeza que deseja excluir este item?\");'>Excluir</a>
+                    </div>
+                </div>";
+                }
+            } else {
+                echo "<p>Nenhum Filme encontrado</p>";
+            }
+            ?>
     </header>
 
 
 
 
 
-<h2>Tabela de Idiomas</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Idioma</th>
-    </tr>
-  </thead>
-  <tbody>
- 
 <?php
  if ($idioma->num_rows > 0){
     while ($row = $idioma->fetch_assoc()) {

@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     $result = $idiomaModel->excluirIdioma($id);
 
     if ($result) {
-        header("Location: /index.php");
+        header("Location: /idioma.php");
         exit();
     } else {
         echo "Erro ao excluir registro.";

@@ -10,7 +10,7 @@ if (isset($_POST['idioma_id'])) {
     $result = $idiomaModel->atualizarIdioma($id, $nome);
 
     if ($result) {
-        header('Location: ../index.php');
+        header('Location: ../idioma.php');
     } else {
         echo "Erro ao atualizar o idioma.";
     }
