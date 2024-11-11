@@ -1,11 +1,12 @@
 <?php 
 include_once '../model/idiomaModel.php';
 
-if (isset($_POST['idioma_id'])) {
+
     $idiomaModel = new IdiomaModel();
     
-    $id = $_POST['idioma_id'];
+    $id = $_POST['id'];
     $nome = $_POST['nome'];
+    
     
     $result = $idiomaModel->atualizarIdioma($id, $nome);
 
@@ -16,7 +17,5 @@ if (isset($_POST['idioma_id'])) {
     }
 
     $idiomaModel->closeConnection();
-} else {
-    echo "Método de requisição inválido.";
-}
+
 ?>

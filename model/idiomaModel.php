@@ -1,6 +1,3 @@
-<!-- configurar mysql, importar o banco, ajustar model, criar controler -->
-
-
 <?php
 class idiomaModel {
     private $servername = "localhost";

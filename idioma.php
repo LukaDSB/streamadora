@@ -83,18 +83,8 @@ table, th, td {
                                         <input type="submit" value="Cadastrar Idioma">
                                     </form>
                                     <div class="modal-body">
-                            <form action="controller/atualizarIdiomaController.php" method="post" enctype="multipart/form-data">
-                                <input type="hidden" id="nome" name="nome">
-                                                                                                                          
-                                <div class="mb-3">
-                                    <label for="idioma" class="col-form-label" style="color: black">Idioma:</label>
-                                    <input type="text" class="form-control" id="idioma" name="idioma">
-                                </div>
-                                                              
-                                
-                                <input type="submit" value="Atualizar Idioma">
-
-                                
+                                                                                                                                                   
+                                                               
                                 </div>
                             </div>
                         </div>
@@ -108,14 +98,19 @@ table, th, td {
                     echo "<div class='card'>
                      <div class='card-body'>
                         <p class='card-text'>" . $row["nome"] . "</p>
+                                              
                         <button type='button' class='btn btn-primary me-3' 
                             data-bs-toggle='modal' 
-                            data-bs-target='#modalExcluir' 
-                            data-idioma='" . $row['nome'] . "' 
+                            data-bs-target='#modalAtualizacao'
+                            data-id='" . $row['idioma_id'] . "'
+                            data-nome='" . $row['nome'] . "'>
                             Editar
                         </button>
 
-                        <a href='controller/excluirIdiomaController.php?id=" . $row["idioma_id"] . "' class='btn btn-danger' onclick='return confirm(\"Tem certeza que deseja excluir este item?\");'>Excluir</a>
+                    
+
+                       
+                  <a href='controller/excluirIdiomaController.php?id=" . $row["idioma_id"] . "' class='btn btn-danger' onclick='return confirm(\"Tem certeza que deseja excluir este item?\");'>Excluir</a>
                     </div>
                 </div>";
                 }
@@ -123,6 +118,40 @@ table, th, td {
                 echo "<p>Nenhum Filme encontrado</p>";
             }
             ?>
+
+<div class="modal fade" id="modalAtualizacao" tabindex="-1" aria-labelledby="modalAtualizacaoLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalCadastroLabel">Editar idioma</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="controller/atualizarIdiomaController.php" method="post" enctype="multipart/form-data">
+                                <input type="hidden" id="id" name="id">
+
+                                <div class="mb-3">
+                                    <label for="nome" class="col-form-label" style="color: black">Nome:</label>
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="">
+                                </div>
+
+                                <!-- <div class="mb-3">
+                                    <label for="idioma_id" class="col-form-label" style="color: black">Idioma_id:</label>
+                                    <input type="text" class="form-control" id="idioma_id" name="idioma_id" placeholder="">
+                                </div> -->
+                               
+                                
+                                <input type="submit" value="Atualizar Filme">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
     </header>
 
 
@@ -151,21 +180,19 @@ echo '
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-
-<script>
+    <script>
         const modalAtualizacao = document.getElementById('modalAtualizacao');
         modalAtualizacao.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget;
 
-          
+            const idiomaId = button.getAttribute('data-id');
             const nome = button.getAttribute('data-nome');
+            
 
-       
+            modalAtualizacao.querySelector('#id').value = idiomaId;
             modalAtualizacao.querySelector('#nome').value = nome;
             
         });
     </script>
-
-
 </body>
 </html>
