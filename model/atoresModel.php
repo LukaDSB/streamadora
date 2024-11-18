@@ -22,7 +22,7 @@ class AtoresModel {
     }
 
     public function excluirAtores($id) {
-        $sql = "DELETE FROM ator WHERE filmes_id = ?";
+        $sql = "DELETE FROM ator WHERE ator_id = ?";
         $stmt = $this->conn->prepare($sql);
     
         if ($stmt) {
@@ -49,12 +49,12 @@ class AtoresModel {
         }
     }
 
-    public function atualizarFilmes($id, $titulo, $descricao, $anoLancamento, $duracaoLocacao, $duracaoFilme, $idioma, $precoLocacao, $classificacao) {
-        $sql = "UPDATE filmes SET titulo = ?, descricao = ?, anoLancamento = ?, duracaoLocacao = ?, duracaoFilme = ?, idioma = ?, precoLocacao = ?, classificacao = ? WHERE filmes_id = ?";
+    public function atualizarAtores($id, $nome) {
+        $sql = "UPDATE ator SET nome = ? WHERE ator_id = ? ";
         $stmt = $this->conn->prepare($sql);
     
         if ($stmt) {
-            $stmt->bind_param("ssiiisdsi", $titulo, $descricao, $anoLancamento, $duracaoLocacao, $duracaoFilme, $idioma, $precoLocacao, $classificacao, $id);
+            $stmt->bind_param("si", $nome, $id);
             $executou = $stmt->execute();
             $stmt->close();
     

@@ -46,6 +46,15 @@ h2, h4{
     flex-wrap: wrap;
 }
 
+#exibir-atores{
+    display: inline-block;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: black;
+    padding: 1em;
+}
+
 .card-img-top{
     height: 15em;
     object-fit: cover;
@@ -64,6 +73,12 @@ body{
     color: white;
 }
 
+/*Altera para azul o link da pagina atual*/
+.atual_page {
+
+    color: #0D8AFF !important;
+}
+
 .teste{
     background-color: black;
     a{
@@ -77,14 +92,17 @@ body{
         color: white;
     }
 }
-/*Altera para azul o link da pagina atual*/
-.atual_page {
 
-    color: #0D8AFF !important;
+.card_ator{
+    background-color: grey;
+    width: 100%;
+    justify-content: start;
+    display: inline-block;
 }
 
-/*tentativa de alterar o formato e a posicao do botao editar*/
-.btn-edit-ator button  {
-    right: 90px;
-    color: black!important; 
+.nome-ator{
+    color: aliceblue;
+    
 }
+
+
