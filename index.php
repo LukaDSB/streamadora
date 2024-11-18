@@ -35,7 +35,7 @@ $db->closeConnection();
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link " href="#" role="button"
+                            <a class="nav-link " href="categoria/administrarCategoria.php" role="button"
                                 aria-expanded="false">
                                 Categorias
                             </a>
