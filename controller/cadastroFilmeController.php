@@ -1,5 +1,5 @@
 <?php
-include_once '../modal/filmesModel.php';
+include_once '../model/filmesModel.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $titulo = $_POST['titulo'];
