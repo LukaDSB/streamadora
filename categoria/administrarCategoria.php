@@ -69,16 +69,22 @@
             flex: 1;
             padding: 2em;
             background-color: #0d3b37;
-            color: #fff;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            color:#f3dba5;
+        }
+
+        .form-section h2{
+            border-bottom: 1px solid #f3dba5;
+            padding: 1em;
         }
 
         .form-section form {
             display: flex;
             flex-direction: column;
             gap: 1em;
+            
         }
 
         .form-section label {
@@ -95,7 +101,7 @@
             background-color:#223d3c;
         }
 
-        .form-section input[type="submit"] {
+        .form-section input[type="submit"], .links a {
             padding: 0.5em;
             background-color: #f3dba5;
             color: #0d3b37;
@@ -139,6 +145,21 @@
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
+          border-bottom: 1px solid #f3dba5;
+          padding-bottom: 1em;
+        }
+        .links{
+            padding-top: 1em;
+            border-top: 1px solid #f3dba5;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5em;
+        }
+        .links a{
+            text-decoration: none;
+            padding: 1em 1.5em;
         }
     </style>
 </head>
@@ -202,6 +223,11 @@
                 </div>
                 <input type="submit" value="CADASTRAR">
             </form>
+            <div class="links">
+                <a href="../index.php">Home</a>
+                <a href="#">Atores</a>
+                <a href="#">Idiomas</a>
+            </div>
         </section>
         
         <!-- Modal de confirmação -->
