@@ -45,7 +45,9 @@ $db->closeConnection();
                         </li>
 
                         <li class="nav-item">
+
                             <a class="nav-link" href="./idioma.php">Idioma</a>
+
                         </li>
                     </ul>
 
